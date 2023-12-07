@@ -1,34 +1,37 @@
-const emailElement = document.querySelector('#email')
-const usernameElement = document.querySelector('#username')
-const passwordElement = document.querySelector('#password')
-const loginBtn = document.querySelector('#login')
-
-
+const emailElement = document.querySelector('#email');
+const passwordElement = document.querySelector('#password');
+const loginBtn = document.querySelector('#login');
 
 loginBtn.addEventListener('click', () => {
+    const email = emailElement.value;
+    const password = passwordElement.value;
 
-    const userDetail = {
-        email: emailElement.value,
-        username: usernameElement.value,
-        password: passwordElement.value
-    }
-
-    if(!userDetail.email){
-        alert("Please Input the email field!")
-        return
-    }
-    else if(!userDetail.username){
-        alert("Please Input the usename field!")
-        return
-    }
-     else if(!userDetail.password){
-        alert("Please Input the usename field!")
-        return
+    if (!email || !password) {
+        alert('Please fill in both email and password.');
+        return;
     }
 
-    // Store user information in local storage
-    localStorage.setItem('username', userDetail.username);
-    localStorage.setItem('email', userDetail.email);
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    const currentUser = users.find(user => user.email === email);
+
+    if (!currentUser) {
+        alert('User not found. Please check your email.');
+        return;
+    }
+
+    if (currentUser.password !== password) {
+        alert('Incorrect password. Please try again.');
+        return;
+    }
+
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+    alert('Login successful! Redirecting to the dashboard.');
     window.location.href = '/index.html';
-    
-})
+});
+
+
+
+
+
