@@ -5,6 +5,19 @@ const formatName = (name) => name.charAt(0).toUpperCase() + name.slice(1).toLowe
 document.querySelector('#firstName').value = formatName(currentUser.firstName);
 document.querySelector('#lastName').value = formatName(currentUser.lastName);
 document.querySelector('#email').value = currentUser.email || '';
+const usernameForm = document.querySelector('#usernameForm');
+usernameForm.value = currentUser.username;
+const usernameSettings = document.querySelector('#usernameSettings')
+usernameSettings.textContent = currentUser.username
+
+
+const changePasswordBtn = document.querySelector('#changePassword')
+let isChangePassword = false
+changePasswordBtn.addEventListener('click', () => {
+    isChangePassword = true
+    alert("Change your password!")
+})
+
 
 updateBtn.addEventListener('click', (e) => {
     e.preventDefault()
@@ -16,16 +29,77 @@ updateBtn.addEventListener('click', (e) => {
 
     const password = document.querySelector('#password').value;
     const confirmPassword = document.querySelector('#confirmPassword').value;
+    if(isChangePassword){
+        
+        if(password == ''){
+            alert("Please Input the password Field.")
+        } else if (password != confirmPassword){
+            alert("Password is not equal to confirm password.")
+        } else {
+            users[userIndex] = {
+                ...users[userIndex],
+                firstName: formatName(document.querySelector('#firstName').value),
+                lastName: formatName(document.querySelector('#lastName').value),
+                username: usernameForm.value,
+                email: document.querySelector('#email').value,
+                password: password, 
+            };
+        
+        
+            localStorage.setItem('users', JSON.stringify(users));
+        
+        
+            localStorage.setItem(
+                'currentUser',
+                JSON.stringify({
+                    ...currentUser,
+                    firstName: formatName(document.querySelector('#firstName').value),
+                    lastName: formatName(document.querySelector('#lastName').value),
+                    password: password,
+                    username: usernameForm.value,
+                    email: document.querySelector('#email').value,
+                })
+            );
+        
+        
+            currentUser.firstName = formatName(document.querySelector('#firstName').value);
+            currentUser.lastName = formatName(document.querySelector('#lastName').value);
+            currentUser.email = document.querySelector('#email').value;
+            usernameSettings.value = currentUser.username
+            isChangePassword = false
+            alert('Update Success')
+            location.reload();
+            return
+        }
+        return
+
+    } else {
+        
+    if(password === ''){
+        alert("Please enter your password to update your profile.")
+        return
+    }
+
+    if(password !== currentUser.password){
+        alert("Password incorrect!")
+        return
+    }
+
     if (password !== confirmPassword) {
         alert('Password and Confirm Password do not match.');
         return;
     }
+
+    }
+
+
 
 
     users[userIndex] = {
         ...users[userIndex],
         firstName: formatName(document.querySelector('#firstName').value),
         lastName: formatName(document.querySelector('#lastName').value),
+        username: usernameForm.value,
         email: document.querySelector('#email').value,
         password: password, 
     };
@@ -40,6 +114,7 @@ updateBtn.addEventListener('click', (e) => {
             ...currentUser,
             firstName: formatName(document.querySelector('#firstName').value),
             lastName: formatName(document.querySelector('#lastName').value),
+            username: usernameForm.value,
             email: document.querySelector('#email').value,
         })
     );
@@ -48,7 +123,10 @@ updateBtn.addEventListener('click', (e) => {
     currentUser.firstName = formatName(document.querySelector('#firstName').value);
     currentUser.lastName = formatName(document.querySelector('#lastName').value);
     currentUser.email = document.querySelector('#email').value;
+    usernameSettings.value = currentUser.username
+    isChangePassword = false
     alert('Update Success')
+    location.reload();
 });
 
 
