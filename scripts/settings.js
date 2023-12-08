@@ -9,7 +9,7 @@ const usernameForm = document.querySelector('#usernameForm');
 usernameForm.value = currentUser.username;
 const usernameSettings = document.querySelector('#usernameSettings')
 usernameSettings.textContent = currentUser.username
-
+const rememberBox = document.querySelector('#remember')
 
 const changePasswordBtn = document.querySelector('#changePassword')
 let isChangePassword = false
@@ -35,7 +35,9 @@ updateBtn.addEventListener('click', (e) => {
             alert("Please Input the password Field.")
         } else if (password != confirmPassword){
             alert("Password is not equal to confirm password.")
-        } else {
+        } else if (!rememberBox.checked) {
+            alert('Please Accept the terms and conditions');
+        }else {
             users[userIndex] = {
                 ...users[userIndex],
                 firstName: formatName(document.querySelector('#firstName').value),
@@ -88,6 +90,11 @@ updateBtn.addEventListener('click', (e) => {
     if (password !== confirmPassword) {
         alert('Password and Confirm Password do not match.');
         return;
+    }
+
+    if (!rememberBox.checked){
+        alert('Please Accept the terms and conditions');
+        return
     }
 
     }
