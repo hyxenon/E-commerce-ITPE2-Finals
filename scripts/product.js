@@ -34,7 +34,6 @@ function addProduct() {
     // Save the updated products array back to local storage
     localStorage.setItem('products', JSON.stringify(existingProducts));
 
-    // Optional: You can perform additional actions like clearing the form or updating the UI
     document.getElementById('name').value = '';
     document.getElementById('productImage').value = '';
     document.getElementById('price').value = '';
@@ -45,12 +44,12 @@ function addProduct() {
 
 // Add an event listener to the form submission
 document.getElementById('addProductForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
-    addProduct(); // Call the function to handle the form submission
+    event.preventDefault(); 
+    addProduct(); 
     location.reload();
 });
 
-// Function to open the Edit Product modal with the product data
+
 function openEditModal(productId) {
     // Get the product data from local storage based on the productId
     const products = JSON.parse(localStorage.getItem('products')) || [];
@@ -148,8 +147,6 @@ function deleteProduct(productId) {
         // Save the updated products back to local storage
         localStorage.setItem('products', JSON.stringify(products));
 
-        // Reload or update the product grid on the page
-        // You may implement a function to refresh the product grid here
         displayProducts();
     } else {
         console.error('Product not found for ID:', productId);

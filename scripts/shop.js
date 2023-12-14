@@ -6,8 +6,6 @@ function addToCart(productId) {
     const existingCartItem = cartItems.find(item => item.id === productId);
 
     if (existingCartItem) {
-        // If the product is already in the cart, you can update quantity or take other actions
-        // For simplicity, let's just increase the quantity in this example
         existingCartItem.quantity += 1;
     } else {
         // If the product is not in the cart, add it
@@ -20,7 +18,6 @@ function addToCart(productId) {
     // Save the updated cart back to local storage
     localStorage.setItem('cart', JSON.stringify(cartItems));
 
-    // Optionally, you can update the UI to reflect the updated cart
 }
 
 
