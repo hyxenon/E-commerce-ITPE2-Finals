@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"  rel="stylesheet" />
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="/scripts/index.js" defer></script>
-    <script src="/scripts/cart.js" defer></script>
+    <script src="/scripts/sales.js" defer></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -51,7 +51,7 @@
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
             <a href="/index.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-        </li>
+          </li>
 
         <li>
           <a href="/pages/products.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Products</a>
@@ -59,12 +59,12 @@
         <li>
           <a href="/pages/shop.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Shop</a>
       </li>
-      <li>
-        <a href="/pages/cart.html" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Cart</a>
-      </li>
-      <li>
-        <a href="/pages/sales.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sales</a>
-    </li>
+        <li>
+            <a href="/pages/cart.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Cart</a>
+        </li>
+        <li>
+            <a href="/pages/sales.html" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Sales</a>
+          </li>
 
       </ul>
     </div>
@@ -72,19 +72,33 @@
   </nav>
   
   <!-- Section -->
-  <div class="px-8 py-4">
-    <div class="p-4 border-2 flex flex-col border-gray-200 rounded-lg dark:border-gray-700">
-      <h1 class="text-center font-bold text-xl mb-4">Your Cart</h1>
-      <p class="text-right mr-4 mb-4 font-bold">Total Amount: $<span class="cart-total-amount">0.00</span></p>
+  <div class="flex flex-col items-center mt-8 px-16">
+    <h1 class="text-3xl font-bold mb-4">Sales</h1>
 
-      <div class="cartlist">
-      </div>
-      <div class="flex justify-end">
-        <button id="checkoutButton" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout</button>
-      </div>
+    <div class="total-sales ml-auto">
+        <h1 class="font-bold">Total Sales: <span>$</span></h1>
     </div>
+    <div class="border border-gray-200 rounded-lg w-full sales">
 
-    
+    </div>
   </div>
+  
+    
 </body>
 </html>
+
+
+<!-- <div class="flex justify-between items-center border border-gray-200">
+  <div class="flex items-center gap-4">
+    <div>
+      <img class="w-[150px]" src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/fc4622c4-2769-4665-aa6e-42c974a7705e/air-force-1-07-shoes-WrLlWX.png" alt="">
+    </div>
+    <div class="flex flex-col">
+      <p class="font-bold">Product Info</p>
+      <p class="font-semibold">$<span>32</span></p>
+    </div>
+  </div>
+  <div class="px-8">
+      <p class="font-semibold">$<span>Total Price</span></p>
+  </div>
+</div> -->

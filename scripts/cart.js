@@ -186,5 +186,82 @@ function displayCartItems() {
 }
 
 
+// Function to handle the checkout process
+function checkout() {
+    // Retrieve cart items from local storage
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Retrieve products from local storage
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    // Retrieve sales items from local storage
+    let salesItems = JSON.parse(localStorage.getItem('sales')) || [];
+
+    // Get the current date and time
+    const currentDate = new Date();
+
+    // Check if the cart is empty
+    if (cartItems.length === 0) {
+        alert('Error: Your cart is empty. Add items to your cart before checking out.');
+        return; // Exit the function if the cart is empty
+    }
+
+    // Iterate through each cart item
+    cartItems.forEach(cartItem => {
+        // Find the corresponding product in the products array based on the cart item id
+        const product = products.find(p => p.id === cartItem.id);
+
+        if (product) {
+            // Check if the product is already in the sales items
+            const existingSalesItem = salesItems.find(item => item.id === product.id);
+
+            if (existingSalesItem) {
+                // If the product is already in the sales items, update the quantity and total amount
+                existingSalesItem.quantity += cartItem.quantity;
+                existingSalesItem.totalAmount += cartItem.quantity * product.price;
+            } else {
+                // If the product is not in the sales items, create a new sales item
+                const totalAmount = cartItem.quantity * product.price;
+                const newSalesItem = {
+                    id: product.id,
+                    name: product.name,
+                    productImage: product.productImage,
+                    price: product.price,
+                    quantity: cartItem.quantity,
+                    totalAmount: totalAmount,
+                    timestamp: currentDate.getTime(), // Use timestamp as a unique identifier
+                };
+                // Add the new sales item to the salesItems array
+                salesItems.push(newSalesItem);
+            }
+        }
+    });
+
+    // Save the updated sales items back to local storage
+    localStorage.setItem('sales', JSON.stringify(salesItems));
+
+    // Clear the cart after checkout
+    localStorage.removeItem('cart');
+
+    // Display a success message
+    alert('Checkout successful! Thank you for your purchase.');
+    displayCartItems();
+    displayTotalAmount()
+}
+
+// Add an event listener to the checkout button
+const checkoutButton = document.getElementById('checkoutButton');
+if (checkoutButton) {
+    checkoutButton.addEventListener('click', function () {
+        // Call the checkout function when the button is clicked
+        checkout();
+    });
+}
+
+
+
+
+
+
 // Call the displayCartItems function to initially display cart items
 displayCartItems();
