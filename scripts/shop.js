@@ -138,6 +138,7 @@ function displayProducts() {
         addToCartButton.addEventListener('click', function () {
             const productId = addToCartButton.getAttribute('data-product-id');
             addToCart(productId);
+            alert("Added to Shopping Cart.")
         });
 
         // Append the button to the button div
